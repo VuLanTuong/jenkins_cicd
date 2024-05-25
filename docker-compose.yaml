@@ -1,0 +1,162 @@
+version: "3.8"
+
+services:
+  registry:
+    image: vulantuong/registry-service
+    build:
+      context: ./registry
+      dockerfile: Dockerfile
+    ports:
+      - 8761:8761
+
+  gateway-jwt:
+    image: vulantuong/gateway-jwt-service
+    build:
+      context: ./gateway-jwt
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - auth-service.uri=http://auth-service:8080
+      - cart-service.uri=http://cart-service:8081
+      - admin-service.uri=http://admin-service:8082
+      - product-service.uri=http://product-service:8083
+      - customer-service.uri=http://customer-service:8084
+      - order-service.uri=http://order-service:8085
+      - spring.data.redis.host=redis
+      - spring.data.redis.port=6379
+    depends_on:
+      - registry
+
+  maria-database:
+    image: mariadb:11.3.2
+    ports:
+      - 3307:3306
+    restart: always
+    environment:
+      MARIADB_USER: root
+      MARIADB_PASSWORD: sapassword
+      MARIADB_ROOT_PASSWORD: sapassword
+    volumes:
+      - ./mariadb/data:/var/lib/mysql:Z
+
+  redis:
+    image: redis:7.2.4
+    ports:
+      - 6379:6379
+    restart: always
+    volumes:
+      - ./redis/data:/var/lib/redis:Z
+
+  admin-service:
+    image: vulantuong/admin-service
+    build:
+      context: ./AdminService
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/admin-service?createDatabaseIfNotExist=true
+      - spring.data.redis.host=redis
+      - gateway.uri=gateway
+      - gateway.port=8888
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+    restart: on-failure
+
+  auth-service:
+    image: vulantuong/auth-service
+    build:
+      context: ./AuthService
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/auth-service?createDatabaseIfNotExist
+      - spring.data.redis.host=redis
+      - gateway.uri=gateway
+      - gateway.port=8888
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+      - admin-service
+    restart: on-failure
+  customer-service:
+    image: vulantuong/customer-service
+    build:
+      context: ./CustomerService
+      dockerfile: Dockerfile
+    ports:
+      - 8084:8084
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/customer-service?createDatabaseIfNotExist=true
+      - spring.data.redis.host=redis
+      - gateway.uri=gateway-jwt
+      - gateway.port=8888
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+      - auth-service
+    restart: on-failure
+
+  order-service:
+    image: vulantuong/order-service
+    build:
+      context: ./OrderService
+      dockerfile: Dockerfile
+    ports:
+      - 8085:8085
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/order-service?createDatabaseIfNotExist=true
+      - spring.data.redis.host=redis
+      - gateway.uri=gateway
+      - gateway.port=8888
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+    restart: on-failure
+  cart-service:
+    image: vulantuong/cart-service
+    build:
+      context: ./CartService
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/cart_db?createDatabaseIfNotExist=true
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+    restart: on-failure
+
+  product-service:
+    image: vulantuong/product-service
+    build:
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - 8083:8083
+    environment:
+      - eureka.client.service-url.defaultZone=http://registry:8761/eureka
+      - spring.datasource.url=jdbc:mariadb://maria-database:3306/product-db?createDatabaseIfNotExist=true
+      - spring.data.redis.host=redis
+      - gateway.uri=gateway
+      - gateway.port=8888
+    depends_on:
+      - registry
+      - gateway-jwt
+      - maria-database
+      - redis
+    restart: on-failure

@@ -1,0 +1,74 @@
+auth-service.uri: http://localhost:8080
+cart-service.uri: http://localhost:8081
+admin-service.uri: http://localhost:8082
+product-service.uri: http://localhost:8083
+customer-service.uri: http://localhost:8084
+order-service.uri: http://localhost:8085
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: AuthService
+          uri: ${auth-service.uri}
+          predicates:
+            - Path=/AuthService/**
+          filters:
+            - AuthenticationFilter
+        - id: CustomerService
+          uri: ${customer-service.uri}
+          predicates:
+            - Path=/CustomerService/**
+          filters:
+            - AuthenticationFilter
+        - id: AdminService
+          uri: ${admin-service.uri}
+          predicates:
+            - Path=/AdminService/**
+          filters:
+            - AuthenticationFilter
+        - id: OrderService
+          uri: ${order-service.uri}
+          predicates:
+              - Path=/OrderService/**
+          filters:
+              - AuthenticationFilter
+        - id: CartService
+          uri: ${cart-service.uri}
+          predicates:
+              - Path=/CartService/**
+          filters:
+              - AuthenticationFilter
+        - id: ProductService
+          uri: ${product-service.uri}
+          predicates:
+            - Path=/ProductService/**
+          filters:
+            - AuthenticationFilter
+  application:
+    name: gateway-jwt
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
+resilience4j:
+  retry:
+    instances:
+      retryApi:
+        max-attempts: 5
+        wait-duration: 5s
+    metrics:
+      legacy:
+        enabled: true
+      enabled: true

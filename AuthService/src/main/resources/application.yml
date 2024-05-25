@@ -1,0 +1,8 @@
+resilience4j.rate-limiter:
+  instances:
+    AuthService:
+      limitForPeriod: 2
+      limitRefreshPeriod: 4s
+      timeoutDuration: 10s
+      registerHealthIndicator: true
+      eventConsumerBufferSize: 100

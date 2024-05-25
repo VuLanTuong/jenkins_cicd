@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dee92271-e134-48a1-8666-8491f9402c77" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../AdminService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../AdminService/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuthService/src/main/java/com/example/authservice/controller/JwtController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthService/src/main/java/com/example/authservice/controller/JwtController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CustomerService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../CustomerService/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CustomerService/src/main/java/com/example/customerservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CustomerService/src/main/java/com/example/customerservice/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrderService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderService/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway-jwt/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway-jwt/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway-jwt/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway-jwt/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../start.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2g4qC1tf0nWxXFQqyu7vaEKLAFs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "thang",
+    "last_opened_file_path": "C:/HK2_2023-2024/CK_KTTKPM/group19_perfume-shop-management-system_2024/img-about-system",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dee92271-e134-48a1-8666-8491f9402c77" name="Changes" comment="" />
+      <created>1714967067201</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714967067201</updated>
+      <workItem from="1714967069211" duration="55000" />
+      <workItem from="1715825253560" duration="457000" />
+      <workItem from="1716181129321" duration="567000" />
+      <workItem from="1716218874012" duration="600000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
